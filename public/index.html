@@ -12,35 +12,68 @@
                 <h1>Lights Controller</h1>
             </div>
             <div class="mode-select-area">
-                <div class="centered-container">
-                    <label for="mode-select-dropdown">Select Mode: </label>
-                    <select name="mode-select-dropdown" id="mode-select-dropdown">
-                        <option value="simple-color-inputs">Color and Brightness</option>
-                        <option value="rainbow-mode-inputs">Rainbow Mode</option>
-                        <option value="strobe-mode-inputs">Strobe Mode</option>
-                        <option value="brainbow-mode-inputs">Better Rainbow Mode</option>
-                        <option value="bouncer-mode-inputs">Bouncer Mode</option>
-                        <option value="bouncer-mode-inputs">Sinelon Mode</option>
-                    </select>
-                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <p>Select Mode:</p>
+                        </td>
+                        <td>
+                            <select name="mode-select-dropdown" id="mode-select-dropdown">
+                                <option value="simple-color-inputs">Color and Brightness</option>
+                                <option value="rainbow-mode-inputs">Rainbow Mode</option>
+                                <option value="strobe-mode-inputs">Strobe Mode</option>
+                                <option value="brainbow-mode-inputs">Better Rainbow Mode</option>
+                                <option value="bouncer-mode-inputs">Bouncer Mode</option>
+                                <option value="sinelon-mode-inputs">Sinelon Mode</option>
+                                <option value="sparkle-mode-inputs">Sparkle Mode</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="inputs-container">
-                <div class="input-container" id="color-input-container">
-                    <label for="color-input">Color:</label>
-                    <input id="color-input" name="color-input" type="color" />
-                </div>
-                <div class="input-container" id="brightness-input-container">
-                    <label for="brightness-input">Brightness:</label>
-                    <input id="brightness-input" type="range" name="brightness-input" min="0" max="255"/>
-                </div>
-                <div class="input-container" id="speed-input-container">
-                    <label for="speed-input">Speed:</label>
-                    <input id="speed-input" type="range" name="speed-input" min="1" max="100"/>
-                </div>
-                <div class="input-container" id="length-input-container">
-                    <label for="length-input">Length:</label>
-                    <input id="length-input" type="range" name="length-input" min="1" max="1000"/>
-                </div>
+                <table>
+                    <tr id="color-input-container">
+                        <td>
+                            <p>Color:</p>
+                        </td>
+                        <td>
+                            <input class="input" id="color-input" name="color-input" type="color" />
+                        </td>
+                    </tr>
+                    <tr id="color2-input-container">
+                        <td>
+                            <p>Color 2:</p>
+                        </td>
+                        <td>
+                            <input class="input" id="color2-input" name="color-input" type="color" />
+                        </td>
+                    </tr>
+                    <tr id="brightness-input-container">
+                        <td>
+                            <p>Brightness:</p>
+                        </td>
+                        <td>
+                            <input class="input" id="brightness-input" type="range" name="brightness-input" min="0" max="255"/>
+                        </td>
+                    </tr>
+                    <tr id="speed-input-container">
+                        <td>
+                            <p>Speed:</p>
+                        </td>
+                        <td>
+                            <input class="input" id="speed-input" type="range" name="speed-input" min="1" max="100"/>
+                        </td>
+                    </tr>
+                    <tr id="length-input-container">
+                        <td>
+                            <p>Length:</p>
+                        </td>
+                        <td>
+                            <input class="input" id="length-input" type="range" name="length-input" min="1" max="1000"/>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="submit-button-area">
                 <div class="centered-container">

@@ -12,24 +12,24 @@ app.use(express.static('public'));
 
 var currentData = {
     mode: 0,
-    color: '#0000ff',
+    colors: ['#0000ff'],
     brightness: '200',
     speed: '50',
     length: '1000'
-  }
+}
 
 app.get("/senddata/:mode-:color-:brightness-:speed-:length",function(request, response){
     var infoValidFlag = true;
     var responseString = "";
     var data = new Object
-    data.mode = clamp(request.params.mode, 0, 5)
+    data.mode = clamp(request.params.mode, 0, 6)
     var hexPatt = new RegExp("[0123456789ABCDEFabcdef]{6}")
     var colorData = request.params.color.replace(/\s/g, '');
     if(!hexPatt.test(colorData)){
         responseString += 'incorrect color data\n'
         infoValidFlag = false;
     }
-    data.color = '#' + colorData
+    data.colors = ['#' + colorData];
     data.brightness = clamp(request.params.brightness, 0, 255)
     data.speed = clamp(request.params.speed, 1, 100)
     data.length = clamp(request.params.length, 1, 1000)
@@ -49,7 +49,7 @@ app.get("/setcolour/:color",function(request, response){
     var data = currentData
     var hex = colourNameToHex(request.params.color.replace(/\s/g, ''))
     if(hex) {
-        data.color = hex
+        data.colors = [hex]
         response.send('color updated')
         io.emit('set-info', data)
         currentData = data
@@ -84,7 +84,7 @@ io.on('connection', function(socket){
     console.log('Made socket connection')
 
     socket.on('set-info', function(data){
-        console.log("Socket Data received: Mode: " + data.mode + ", Color: " + data.color + ", Brightness: " + data.brightness + ", Speed: " + data.speed + ", Length: " + data.length)
+        console.log("Socket Data received: Mode: " + data.mode /*+ ", Color: " + data.color*/ + ", Brightness: " + data.brightness + ", Speed: " + data.speed + ", Length: " + data.length)
         socket.broadcast.emit('set-info', data)
         console.log(data)
     })
@@ -138,7 +138,8 @@ function modeNameToIndex(mode){
         "2" : 2, "two" : 2, "strobe" : 2,
         "3" : 3, "three" : 3, "betterrainbow" : 3, "coolrainbow" : 3, "improvedrainbow" : 3,
         "4" : 4, "four" : 4, "bouncer" : 4,
-        "5" : 5, "five" : 5, "wave" : 5, "sine" : 5, "sign" : 5
+        "5" : 5, "five" : 5, "wave" : 5, "sine" : 5, "sign" : 5,
+        "6" : 6, "six" : 6, "sparkle" : 6
     }
 
     if (typeof modes[mode.toLowerCase().replace(/\s/g, '')] != 'undefined')
@@ -162,6 +163,10 @@ function setDataToModeDefaults(mode){
         case 4:
             currentData.speed = 70
             currentData.length = 150
+            break
+        case 5:
+            break
+        case 6:
             break
     }
     currentData.mode = mode

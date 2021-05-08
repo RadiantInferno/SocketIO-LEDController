@@ -7,19 +7,19 @@ body {
     background-color: #3d5a80;
     margin: auto;
     color: #e0fbfc;
-    min-width: 500px;
-    width: 50%;
+    min-width: 50%;
+    max-width: 500px;
     padding: 0px 20px;
 }
 
 .header{
     text-shadow: 5px 5px #000000;
-    font-size: 5vmin;
+    font-size: 50;
     text-align: center;
 }
 
 .mode-select-area {
-    padding: 2rem 1rem;
+    padding-bottom: 2rem;
     position: relative;
 }
 
@@ -59,4 +59,21 @@ body {
 
 .input-container {
     overflow: hidden;
+}
+
+.inputs-container {
+    background-color: #4d5a80;
+}
+
+table {
+    margin: auto;
+}
+
+/* table, th, td {
+    border: 1px solid black;
+} */
+
+p {
+    text-align: right;
+    margin: 0;
 }

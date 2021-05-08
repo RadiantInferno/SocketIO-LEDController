@@ -4,6 +4,7 @@ var socket = io();
 // Query DOM
 var modeInput = document.getElementById('mode-select-dropdown'),
     colorInput = document.getElementById('color-input'),
+    color2Input = document.getElementById('color2-input'),
     brightnessInput = document.getElementById('brightness-input'),
     speedInput = document.getElementById('speed-input'),
     lengthInput = document.getElementById('length-input'),
@@ -19,18 +20,19 @@ modeInput.addEventListener('change', function(){
     setInputs(activeInputsBytes[modeInput.selectedIndex])
 })
 
-var inputIDs = ["color-input-container", "brightness-input-container", "speed-input-container", "length-input-container"]
-var activeInputsBytes = [ 3, 6, 7, 14, 15, 2 ];
+var inputIDs = ["color-input-container", "brightness-input-container", "speed-input-container", "length-input-container", "color2-input-container"]
+var activeInputsBytes = [ 3, 6, 7, 14, 15, 2, 31 ];
 // 1: Color
 // 2: Brightness
 // 4: Speed
 // 8: Length
+// 16: Color 2
 
 // Emit events
 btn.addEventListener('click', function(){
     socket.emit('set-info', {
         mode: modeInput.selectedIndex,
-        color: colorInput.value,
+        colors: [colorInput.value, color2Input.value],
         brightness: brightnessInput.value,
         speed: speedInput.value,
         length: lengthInput.value
@@ -65,9 +67,9 @@ function setInputs(byte) {
 }
 
 function showInput(id) {
-    document.getElementById(id).style.height = null;
+    document.getElementById(id).style.display = null;
 }
 
 function hideInput(id) {
-    document.getElementById(id).style.height = "0";
+    document.getElementById(id).style.display = "none";
 }
