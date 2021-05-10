@@ -1,10 +1,13 @@
 var express = require('express');
 var socket = require('socket.io');
+var config = require('./config.json');
 
 // App setup
 var app = express();
-var server = app.listen(25565,function(){
-    console.log('Listening to requests on port 25565')
+var targetPort = typeof config.port != undefined ? config.port : 25565;
+
+var server = app.listen(targetPort,function(){
+    console.log('Listening to requests on port ' + targetPort)
 })
 
 // Static files
@@ -68,6 +71,7 @@ app.get("/setmode/:mode",function(request, response){
         setDataToModeDefaults(newMode)
         response.send('mode updated')
         io.emit('set-info', currentData)
+        currentData = data
         console.log("Recieved valid mode from GET and updated: ")
         console.log(currentData)
     }
