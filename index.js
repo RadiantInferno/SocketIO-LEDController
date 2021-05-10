@@ -71,7 +71,6 @@ app.get("/setmode/:mode",function(request, response){
         setDataToModeDefaults(newMode)
         response.send('mode updated')
         io.emit('set-info', currentData)
-        currentData = data
         console.log("Recieved valid mode from GET and updated: ")
         console.log(currentData)
     }
@@ -153,6 +152,7 @@ function modeNameToIndex(mode){
 }
 
 function setDataToModeDefaults(mode){
+    currentData.brightness = 128
     switch(mode){
         case 1:
             currentData.speed = 25
